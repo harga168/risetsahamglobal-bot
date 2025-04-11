@@ -2,8 +2,9 @@ from flask import Flask, request
 import requests
 import os
 
-app = Flask(__name__)
-BOT_TOKEN = os.environ.get("7401695806:AAFK_f8cdFI-4J6JuPYrsk1yFxLqo8W82ck")
+app = Flask(__name__)  # <- INI WAJIB ADA DI ATAS SECARA GLOBAL
+
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 URL = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
 @app.route('/')
@@ -25,7 +26,9 @@ def webhook():
             reply = "❓ Perintah tidak dikenali."
 
         requests.post(URL, json={"chat_id": chat_id, "text": reply})
+
     return "ok", 200
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+# WAJIB ada ini:
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
