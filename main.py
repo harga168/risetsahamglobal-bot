@@ -2,7 +2,7 @@ from flask import Flask, request
 import requests
 import os
 
-app = Flask(__name__)  # <- INI WAJIB ADA DI ATAS SECARA GLOBAL
+app = Flask(__name__)
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 URL = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -29,6 +29,5 @@ def webhook():
 
     return "ok", 200
 
-# WAJIB ada ini:
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
